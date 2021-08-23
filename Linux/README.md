@@ -1,4 +1,6 @@
-# 사용 권한
+# [Linux] 사용 권한 & 환경 변수
+
+## 사용 권한
 
 폴더와 파일의 권한으로 폴더인지 파일인지 구분하는 방법과, 폴더나 파일의 사용 권한을 변경하는 방법
 
@@ -9,9 +11,7 @@
 - 사용 권한과 소유자에 대해 이해하고, 사용 권한을 변경할 수 있다.
 
   - 파일의 소유자와 파일에 적용된 사용 권한을 확인하고 이해할 수 있다. `ls -l`
-
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/84fecdfc-cca5-4fba-ba2d-0b59b0d9de22/Untitled.png)
-
+  - ![image](https://user-images.githubusercontent.com/73332608/130395675-bede1c41-c8b2-472e-ad01-e339a486eb6d.png)
     - 폴더 linux는 `drwxr-xr-x` 라고 출력되었다.
       - 첫 시작
         - `-` : not directory (파일)
@@ -21,8 +21,8 @@
       - `x` : execute permission
         - 세 번에 걸쳐 나타나는 이유 : 사용자와 그룹, 나머지에 대한 권한을 표시하기 때문에.
       - helloworld.js의 경우 소유자는 읽기와 쓰기, 다른 사용자 그룹은 읽기만 가능하다는 의미이다.
-
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/58588478-5099-4ccb-be0e-953a26b4b29b/Untitled.png)
+      
+      ![image](https://user-images.githubusercontent.com/73332608/130395726-df9b024e-59b8-422e-bcc8-25553af8f86f.png)
 
   - 파일에 적용된 사용 권한을 변경할 수 있다. `chmod`
 
@@ -40,7 +40,8 @@
         - Symbolic method : 더하기 (`+`), 빼기 (`-`), 할당 (`=`)과 엑세서 유형을 표기해서 변경하기
           - Symbolic method는 엑세스 클래스, 연산자, 엑세스 타입으로 구분한다.
 
-        [Symbolic method의 구분](https://www.notion.so/619600e16e164e93aef11482b641b447)
+        [Symbolic method의 구분]
+        ![image](https://user-images.githubusercontent.com/73332608/130395943-79c7b25c-bd1d-4111-aa46-d5f5d3ea60ca.png)
 
         ```sql
         chmod g-r filename # removes read permission from group
@@ -57,8 +58,8 @@
         chmod o+x filename # adds execute permission to other
         chmod u+x filename # adds execute permission to user
         ```
-
-        ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0f617b0f-c59c-461b-af07-0c6c920414d7/Untitled.png)
+        
+        ![image](https://user-images.githubusercontent.com/73332608/130395763-52346b3e-12f6-4c1c-84d2-e678048c2f81.png)
 
         실제로 helloworld.js 의 권한을 위와 같이 변경할 수 있었다.
 
@@ -67,7 +68,8 @@
           - Absolute form은 숫자 7까지 나타내는 3 bits의 합으로 표기한다.
           - 사용자, 그룹, 또는 다른 사용자나 그룹마다 `rwx` 가 나타나고, 각 영역의 boolean 값으로 표기할 수 있다.
 
-          [Absolute form 구분](https://www.notion.so/207e126382fa40ca97967576ec480b85)
+          [Absolute form 구분]
+          ![image](https://user-images.githubusercontent.com/73332608/130395872-0ad5cc0a-11da-4de7-b142-48bddd0a1a42.png)
 
           user는 `rwx` 를, group과 other은`r--` 로 권한을 변경하려고 한다면, 위표에 나와있는 숫자의 합을 user, group, other 순으로 입력하여 사용한다.
 
@@ -76,7 +78,7 @@
           chmod 744 helloworld.js
           ```
 
-          ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4afcfd20-0887-4951-88ff-f739a786eb73/Untitled.png)
+          ![image](https://user-images.githubusercontent.com/73332608/130395999-989bf48a-4de8-442e-9441-e20d2cb122d5.png)
 
 # 환경 변수
 
