@@ -208,8 +208,7 @@ LIMIT 3;
 - 1 : 1 - 하나의 레코드가 다른 테이블의 레코드 한 개와 연결된 경우
 
   예시 : User - Phonebook
-
-  ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fc63271f-ccf6-4c33-bf8e-013563c5abf0/Untitled.png)
+  ![image](https://user-images.githubusercontent.com/73332608/131540108-a83511d5-88f9-4935-a739-b46cd2f6b4b0.png)
 
   User table과 Phonebook table의 1 : 1 관계
 
@@ -221,7 +220,7 @@ LIMIT 3;
 
 - 1 : N - 하나의 레코드가 서로 다른 여러 개의 레코드와 연결된 경우
 
-  ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c323bc75-36c2-4e17-9dca-67cf17ae22e1/Untitled.png)
+  ![image](https://user-images.githubusercontent.com/73332608/131540164-2e424914-b149-4efe-8311-1a0e7924aba2.png)
 
   User table과 Phonebook table의 1 : N 관계
 
@@ -236,16 +235,16 @@ LIMIT 3;
 
   예시 - Customer, Package
 
-  ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e8f5466c-1f5f-484e-9b4c-931810c32057/Untitled.png)
+  ![image](https://user-images.githubusercontent.com/73332608/131540218-ba4ff79c-6152-42e4-a5a4-3ba56a3390e6.png)
 
   두 개의 테이블과 일대다 관계를 형성하는 새로운 테이블로 다대다 관계를 표현할 수 있다.
 
-  ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f11cdcb9-b0e2-47b9-ae35-16855a9e67ae/Untitled.png)
+ ![image](https://user-images.githubusercontent.com/73332608/131540249-1c00570d-e9ba-428e-8cf2-8faff64b9edb.png)
 
 - self referencing : 테이블 스스로 관계를 가짐
 
   - 예를 들어 추천인이 누구인지 파악하기 위해 사용될 수 있다.
 
-  ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/25e3cddb-ca72-40fe-bec7-4ef770a5f05c/Untitled.png)
+ ![image](https://user-images.githubusercontent.com/73332608/131540275-327526aa-a789-41a3-a3d8-b0f294e30212.png)
 
   User 테이블의 recommend_id는 User 테이블의 user_id와 연결되어 있다. 한 명의 유저(user_id)는 한 명의 추천인(recommend_id)를 가질 수 있다. 그러나 여러 명이 한명의 유저를 추천인으로 등록할 수 있다. 이 관계는 일대다 관계와 유사하다고 생각할 수 있으나 일반적으로 일대다 관계는 서로 다른 테이블의 관계를 나타낼 때 표현하는 방법이다.
