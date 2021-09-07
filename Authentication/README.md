@@ -119,3 +119,114 @@ Web application Security : 개발자들이 웹사이트, 모바일 어플, 웹 A
       - 서버측에서 CSRF 공격에 보호하기 위한 문자열을 유저의 브라우저와 웹 앱에만 제공한다.
     - Same-site cookie 사용하기
       - 같은 도메인에서만 세션/쿠키를 사용할 수 있다.
+
+#
+
+## 인증 구현 방식
+
+#
+
+### 토큰 기반 인증 (Token-based Authentication)
+
+### 토큰이란?
+
+화폐로 사용하는 토큰을 생각해보자
+
+- 오락실에서 사용하는 토큰
+- 행사에 입장할 때 사용하는 토큰
+- 놀이공원에 입장료를 내면 주는 토큰
+
+> 나는 돈을 지불했고, 이 시설을 사용할 수있어! 라는 메시지를 담고 있다.
+
+> 여기서 토큰은 유저 정보를 암호화한 상태로 담을 수 있고, 암호화했기 때문에 클라이언트에 담을 수 있다.
+
+### JWT란?
+
+> Json Web Token - Json 포맷으로 사용자에 대한 속성을 저장하는 웹 토큰
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/75e9ced2-14c2-4217-8edd-3fab5961eaf0/Untitled.png)
+
+1. Header
+
+   1. 어떤 종류의 토큰인가?
+   2. 어떤 알고리즘으로 암호화하는가?
+
+   ```jsx
+   {"alg": "HS256", "typ":"JWT"}
+   ```
+
+2. Payload
+
+   1. 유저의 정보
+   2. 권한을 부여 받았는가?
+   3. 기타 필요한 정보
+
+   ```jsx
+   {"sub": "someInformation",
+   "name": "phillip",
+   "iat": 151623391}
+   ```
+
+3. Signature
+
+   1. Header, Payload를 base64인코딩한 값과 salt값의 조합으로 암호화된 값
+
+   ```jsx
+   HMACSHA256(base64UrlEncode(header) + "." + base64UrlEncode(payload), secret);
+   ```
+
+### JWT의 종류
+
+1. Access Token : 보호된 정보들에 접근할 수 있는 권한 부여에 사용된다.
+2. Refresh Tok : Access
+
+   1. 클라이언트가 처음 인증을 받게 될 때 (로그인), access, refresh token 두가지를 다 받지만, 실제로 권한을 얻는 데 사용하는 토큰은 access token이다.
+   2. 즉, 권한을 부여 받는데엔 access token만 있으면 된다.
+   3. 하지만, access token을 만약 악의적인 유저가 얻어냈다면 이 악의적인 유저는 자신이 해당 유저인 마냥 서버에 여러가지 요청을 보낼 수 있다.
+   4. 그렇기 때문에 access token에는 비교적 `짧은 유효기간` 을 주어 탈취 되더라도 오랫동안 사용할 수 없도록 하는 것이 좋다.
+   5. 유효기간 만료시 refresh token을 사용하여 새로운 access token을 발급받는다. 이때, 유저는 다시 로그인할 필요는 없다.
+
+   > refresh token이 탈취된다면....
+
+   오랜기간동안 access token이 만료되면 다시 발급 받으며 유저에게 피해를 입힐 수 있기 때문에 유저의 편의보다 정보를 지키는 것이 더 중요한 웹사이트들은 refresh token을 사용하지 않는 경우가 많다.
+
+### JWT 사용 예시
+
+> JWT는 `권한 부여` 에 굉장히 유용하다. 새로 다운받는 `A` 라는 앱이 Gmail과 연동되어 이메일을 읽어와야 한다고 생각해보자.
+
+유저는
+
+1. Gmail 인증 서버에 로그인 정보를 제공한다.
+2. 성공적으로 인증시 JWT를 발급받는다.
+3. A앱은 JWT를 사용해 해당 유저의 Gmail 이메일을 읽거나 사용할 수 있다.
+
+### 토큰기반 인증 절차
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/536a090f-ba27-4c99-934e-7d5dcb37b9f4/Untitled.png)
+
+1. 클라이언트가 서버에 아이디/비밀번호를 담아 로그인 요청을 보낸다.
+2. 아이디/비밀번호가 일치하는지 확인하고, 클라이언트에게 보낼 암호화된 토큰을 생성한다.
+   - access/refresh 토큰을 모두 생성한다.
+     - 토큰에 담길 정보(payload)는 유저를 식별할 정보, 권한이 부여된 카테고리(사진, 연락처, 기타등등)이 될 수 있다.
+     - 두 종류의 토큰이 `같은 정보를 담을 필요`는 없다.
+3. 토큰을 클라이언트에게 보내주면, 클라이언트는 토큰을 저장한다.
+   - 저장하는 위치는 local storage, cookie, react의 state 등 다양하다.
+4. 클라이언트가 HTTP 헤더(authorization 헤더)에 토큰을 담아 보낸다.
+   - bearer authentication을 이용한다. 참고 [링크1(요약)](https://learning.postman.com/docs/sending-requests/authorization/#bearer-token), [링크2(상세)](https://tools.ietf.org/html/rfc6750)
+5. 서버는 토큰을 해독하여 `"아 우리가 발급해준 토큰이 맞네!"` 라는 판단이 될 경우, 클라이언트의 요청을 처리한 후 응답을 보내준다.
+
+### 토큰 기반 인증의 장점
+
+- **Statelessness & Scalbalility (무상태성 & 확장성)**
+  - 서버는 클라이언트에 대한 정보를 저장할 필요 없다.
+  - 토큰을 헤더에 추가함으로 인증 절차를 완료한다.
+  - 서버를 여러개 가지고 있는 서비스라는 더 유용하다.
+    - 각각의 서버에서 인증을 할 필요 없이 하나의 토큰으로 여러 서버에서 인증받을 수 있다.
+- **안정성**
+  - 암호화한 토큰을 사용한다.
+  - 암호화한 키를 노출할 필요 없다.
+- **어디서나 생성 가능**
+  - 토큰을 생성하는 서버가 꼭 토큰을 만들지 않아도 된다.
+- **권한 부여에 용이**
+  - 토큰 payload 안에 어떤 정보에 접근 가능한지 정의
+    - ex) 사진과 연락처 사용권한 부여, 사진 권한만 부여, 연락처 권한만 부여
