@@ -144,7 +144,7 @@ Web application Security : 개발자들이 웹사이트, 모바일 어플, 웹 A
 
 > Json Web Token - Json 포맷으로 사용자에 대한 속성을 저장하는 웹 토큰
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/75e9ced2-14c2-4217-8edd-3fab5961eaf0/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/132382634-b49454fe-525c-4056-b468-928fc9e3ed7f.png)
 
 1. Header
 
@@ -202,7 +202,7 @@ Web application Security : 개발자들이 웹사이트, 모바일 어플, 웹 A
 
 ### 토큰기반 인증 절차
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/536a090f-ba27-4c99-934e-7d5dcb37b9f4/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/132382690-ce99e7f3-e2bb-4dea-83c2-88ef2ef917b8.png)
 
 1. 클라이언트가 서버에 아이디/비밀번호를 담아 로그인 요청을 보낸다.
 2. 아이디/비밀번호가 일치하는지 확인하고, 클라이언트에게 보낼 암호화된 토큰을 생성한다.
