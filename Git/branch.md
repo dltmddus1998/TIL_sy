@@ -24,7 +24,7 @@
 
 ex) hotfix, release, develop, feature ...
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/72248a74-1a0f-45ba-ad87-bde788ab4cba/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/133124871-f40770f4-85db-400d-a422-8e77a1e08493.png)
 
 여러 브랜치를 만든 레파지토리의 Git Graph (출처: Git Beginner's Guide for Dummies)
 
@@ -34,7 +34,7 @@ ex) hotfix, release, develop, feature ...
 
 브랜치를 사용하면 아래와 같이 동시에 여러 작업을 진행할 때의 작업 흐름을 한눈에 파악할 수 있다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6806deae-7e9a-4730-9798-bedf7be8a29b/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/133124959-65523d32-5986-4984-be2c-7195663c152f.png)
 
 동시에 여러 작업을 진행하는 Git Graph
 
@@ -70,7 +70,7 @@ ex) hotfix, release, develop, feature ...
 
 `$ git switch -c dev`
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/99bee53d-27f8-4a5f-ac10-ce74e94855b7/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/133125034-2eb61fc2-bb63-4919-aa92-5f666d4131fb.png)
 
 여기서 `HEAD` 는 현재 위치의 커밋을 가리킨다. (현재 작업중인 커밋)
 
@@ -84,7 +84,7 @@ ex) hotfix, release, develop, feature ...
 
 `$ git switch -c feature/login`
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6b3884c5-d016-4be6-a881-9f268f0e401f/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/133125069-0b4a83e5-9d62-45d1-b216-87459f1db547.png)
 
 여기에 소셜 로그인(oauth) 기능을 추가해보자. 위험부담을 줄이기 위해 만들어 놓은 코드를 손대지 않기 위해 새로운 브랜치를 하나 더 만들면 다음과 같다.
 
@@ -92,7 +92,7 @@ ex) hotfix, release, develop, feature ...
 
 `$ git switch -c feature/login-oauth`
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/52937f4a-4767-4a5d-9170-19bd1173e874/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/133125107-9f387bc7-5079-4abd-896f-39c480973576.png)
 
 소셜 로그인 기능까지 구현이 완료되었다. 이 feature/login-oauth에 있는 코드를 feature/login 브랜치로 병합해보자. 이 내용은 아래 **브랜치 병합** 에서 다룰 것이다.
 
@@ -130,11 +130,11 @@ feature/login-oauth → feature/login 병합
    1. feature/login-oauth 브랜치가 병합되기 전 feature/login 브랜치에 추가적인 커밋이 없으므로, 브랜치가 분기될 필요가 없다. 따라서 자동적으로 **fast-forward** 방식으로 병합이 이뤄진다.
       1. **fast-forward : 별도의 커밋을 생성하지 않고 feature/login 브랜치가 바리키는 커밋을 feature/login-oauth가 생성한 커밋으로 바꾸는 작업**
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f7c59f8d-8b56-4f21-91df-af84f10d3cb1/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/133125176-ea0b43ce-2166-4663-8dff-bf5b55e4cf49.png)
 
 만약 feature/login 브랜치에 별도의 커밋이 있었다면, fast-forward가 아닌 merge commit 방식으로 병합됐을 것이다. 이는 각 브랜치가 줄기처럼 분기한 후, 병합의 모양새를 가진다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ae8b061f-a92a-401f-8d6d-cdf8c14d944a/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/133125202-92dbf21e-5b44-4eb9-b0ff-28938674da15.png)
 
 \*\*merge vs. rebase
 rebase의 원리 = fast-forward
@@ -144,13 +144,11 @@ rebase : 말 그대로 branch base를 이동시킨다는 뜻으로, 머지처럼
 
 아래 그림과 같이 feature/login 브랜치에서 `$ git rebase main feature/login` 명령어를 입력하면 main의 가장 최신 커밋으로 브랜치가 가리키는 곳이 변경된다. (main의 다른 커밋에서 충돌이 없을 경우)\*\*
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ac8cfd90-8262-442e-bed3-4ad5b98d06b7/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/133125246-38f85eb1-f9bd-4e1f-b760-89b666fb061b.png)
 
 로컬의 작업한 내용을 Remote Repository에 업로드하기 위해서는 `$ git push origin feature/login` 을 입력한다.
 
 +) feature/login 브랜치의 변경 사항을 다른 팀원들과 함께 코드 리뷰를 하고 dev 브랜치에 적용하려면 Github의 Pull Request 기능을 활용해 dev 브랜치로의 반영을 요청할 수 있다. 리뷰가 끝난 코드는 브라우저에서도 dev 브랜치로 병합할 수 있다.
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/824189e7-bda2-453b-85d1-ee6a0d065b2d/Untitled.png)
 
 **로그에 모든 브랜치를 그래프로 표현**
 
@@ -166,7 +164,7 @@ rebase : 말 그대로 branch base를 이동시킨다는 뜻으로, 머지처럼
 
 ## 전체 흐름 Git Workflow
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/71e443f2-1e38-41d6-88e1-b2c80db9c542/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/133125299-851027fb-8ef3-4895-bb73-afe86aeb0dc6.png)
 
 1. Local에서 새로운 브랜치를 생성하고 작업이 끝나면 Remote Repository로 Push한다.
 2. Project Upstream Repository에 반영(merge)될 수 있도록 Pull Request 한다.
