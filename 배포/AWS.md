@@ -1,6 +1,8 @@
 # Amazon Web Service (AWS)
 
-## **Achievement Goals**
+## AWS 개념 정리 
+
+### **Achievement Goals**
 
 - Cloud와 Deployment의 의미를 각각 알고, 내 코드를 남에게 배포할 수 있다.
 
@@ -18,7 +20,7 @@
         - 클라우드 서비스에 문제가 생기면 내가 배포하고 관리하는 환경에도 영향을 미친다.
     - 대표적인 클라우드 서비스의 형태
 
-      ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7e4f35aa-3313-45e7-8b0d-c646e8752587/Untitled.png)
+      ![image](https://user-images.githubusercontent.com/73332608/133648296-d60aec91-e046-42f6-a547-9d82490eef54.png)
 
       대표적인 서비스 및 기본 제공 서비스 범위
 
