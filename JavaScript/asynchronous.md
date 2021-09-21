@@ -48,7 +48,7 @@ bar();
 
 위 예제의 sleep 함수는 3초 후에 foo 함수를 호출한다. 이 때 bar 함수는 sleep 함수의 실행이 종료된 이후에 호출되므로 3초 이상(foo 함수 실행 시간 + 3초) 호출되지 못하고 블로킹된다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/023e9098-a80a-4016-8ca6-10394abcaa99/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/134125662-806c119f-52fe-40d7-bac1-dba918ae8f7b.png)
 
 위 예제를 타이머 함수인 setTimeout을 사용하여 수정하면 다음과 같다.
 
@@ -73,7 +73,7 @@ bar();
 
 setTimeout 함수는 앞서 살펴본 sleep 함수와 유사하게 일정 시간이 경과한 이후에 콜백 함수를 호출하지만 setTimeout 함수 이후의 태스크를 블로킹하지 않고 곧바로 실행한다. 이처럼 현재 실행 중인 태스크가 종료되지 않은 상태라 해도 다음 태스크를 곧바로 실행하는 방식을 **비동기(asynchronous) 처리**라고 한다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/41af9f2d-5697-4075-a777-4d9c5ae0f31c/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/134125732-60aa154d-c254-4034-8f52-42f1ed29419c.png)
 
 ### 동기 처리 방식 vs. 비동기 처리 방식
 
@@ -111,7 +111,7 @@ setTimeout 함수는 앞서 살펴본 sleep 함수와 유사하게 일정 시간
 
 자바스크립트는 싱글 스레드로 동작하므로 한 번에 하나의 태스크만 처리할 수 있다는 것이 이론적으로 맞지만, 브라우저가 동작하는 것을 살펴보면 많은 태스크가 동시에 처리되는 것처럼 보인다. 이런 자바스크립트의 동시성을 지원하는 것이 바로 **이벤트 루프(event loop)**이다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/cd3efd35-6aae-48d9-a308-468517e38be3/Untitled.png)
+![image](https://user-images.githubusercontent.com/73332608/134125766-7951171c-8bb8-42cf-a209-0d6f8569d2bc.png)
 
 구글의 v8 자바스크립트 엔진을 비롯한 대부분의 자바스크립트 엔진은 크게 2개의 영역으로 구분할 수 있다.
 
